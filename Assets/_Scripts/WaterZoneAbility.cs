@@ -4,13 +4,38 @@ using UnityEngine;
 
 public class WaterZoneAbility : ZoneAbility
 {
-    private void OnEnable()
+    public float ModifiedGravity;
+    public float OGGravity;
+
+    private void Awake()
     {
-        GetComponent<Rigidbody2D>().gravityScale = 0.25f;
+        if (GetComponent<Gamekit2D.PlayerCharacter>())
+        {
+            ModifiedGravity = GetComponent<Gamekit2D.PlayerCharacter>().gravity / 2;
+            OGGravity = GetComponent<Gamekit2D.PlayerCharacter>().gravity;
+            return;
+        }
+        ModifiedGravity = GetComponent<Rigidbody2D>().gravityScale / 2;
+        OGGravity = GetComponent<Rigidbody2D>().gravityScale;
     }
 
-    private void OnDestroy()
+    private void OnEnable()
     {
-        GetComponent<Rigidbody2D>().gravityScale = 1;
+        if (GetComponent<Gamekit2D.PlayerCharacter>())
+        {
+            GetComponent<Gamekit2D.PlayerCharacter>().gravity = ModifiedGravity;
+            return;
+        }
+        GetComponent<Rigidbody2D>().gravityScale = ModifiedGravity;
+    }
+
+    private void OnDisable()
+    {
+        if (GetComponent<Gamekit2D.PlayerCharacter>())
+        {
+            GetComponent<Gamekit2D.PlayerCharacter>().gravity = OGGravity;
+            return;
+        }
+        GetComponent<Rigidbody2D>().gravityScale = OGGravity;
     }
 }
