@@ -44,6 +44,7 @@ namespace Mouledoux.Mediation
         /// <param name="a_holdMessage">if there are no active subscriptions, rebroadcast when one subscribes</param>
         public static void NotifySubscribers(string a_message, T a_arg = default, bool a_holdMessage = false)
         {
+            a_message = a_message.ToLower();
             bool messageBroadcasted = TryInvokeSubscription(a_message, a_arg);
 
             if (!messageBroadcasted && a_holdMessage)

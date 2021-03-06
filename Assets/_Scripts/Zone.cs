@@ -14,7 +14,7 @@ public class Zone : MonoBehaviour
     private ZoneType _ZoneType;
     [HideInInspector]
     public ZoneType _CurrentType;
-    public Color GlassColor;
+    public Color GlassColor;    
 
     private void Awake()
     {

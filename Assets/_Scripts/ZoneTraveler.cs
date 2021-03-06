@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Mouledoux.Mediation;
 [RequireComponent(typeof(Rigidbody2D))]
 public class ZoneTraveler : MonoBehaviour
 {
@@ -27,11 +27,11 @@ public class ZoneTraveler : MonoBehaviour
 
     private void Update()
     {
-        if (PriorityZone._CurrentType != ActiveAbility.ZoneRestriction)
-        {
-            ActiveAbility.enabled = false;
-            ActiveAbility = null;
-        }
+        //if (PriorityZone._CurrentType != ActiveAbility.ZoneRestriction)
+        //{
+        //    ActiveAbility.enabled = false;
+        //    ActiveAbility = null;
+        //}
     }
 
     void FindPrioityZone()
@@ -40,6 +40,7 @@ public class ZoneTraveler : MonoBehaviour
         {
             PriorityZone = null;
             ActiveAbility = null;
+            GetComponent<SpriteRenderer>().sortingLayerName = "Default";
             return;
         }
         Zone mostInfluence = OverlappedZones[OverlappedZones.Count - 1];
@@ -49,6 +50,8 @@ public class ZoneTraveler : MonoBehaviour
                 mostInfluence = zone;
         }
         PriorityZone = mostInfluence;
+        Debug.Log("SHOUT");
+        Catalogue<ZoneTraveler>.NotifySubscribers("MyZoneChanged", this as ZoneTraveler);
         foreach (var ability in Abilities)
         {
             if (ability.ZoneRestriction == PriorityZone._CurrentType)
