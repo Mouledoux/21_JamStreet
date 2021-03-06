@@ -7,16 +7,22 @@ public class SpriteOverlap : MonoBehaviour
     [SerializeField]
     public OverlapEvent OnObjectOverlap;
     [SerializeField]
-    public OverlapEvent OnObjectLeaveOverlap;    
+    public OverlapEvent OnObjectLeaveOverlap;
+
+    [Tooltip("Leave Empty if no tag restrictions")]
+    public List<string> CollisionTags;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        OnObjectOverlap.Invoke(other.gameObject);
-    }    
+        if(CollisionTags.Count == 0 || CollisionTags.Contains(other.tag))
+            OnObjectOverlap.Invoke(other.gameObject);        
+
+    }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        OnObjectLeaveOverlap.Invoke(other.gameObject);
+        if (CollisionTags.Count == 0 || CollisionTags.Contains(other.tag))
+            OnObjectLeaveOverlap.Invoke(other.gameObject);
     }
 }
 
