@@ -1,0 +1,61 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(Rigidbody2D))]
+public class ZoneTraveler : MonoBehaviour
+{
+    public List<Zone> OverlappedZones;
+    public Zone PriorityZone;
+
+    public List<ZoneAbility> Abilities;    
+    public ZoneAbility ActiveAbility;
+
+    virtual public void OnEnterZone(Zone zone)
+    {
+        if (!OverlappedZones.Contains(zone))      
+            OverlappedZones.Add(zone);
+        FindPrioityZone();
+    }
+
+    virtual public void OnExitZone(Zone zone)
+    {
+        if (OverlappedZones.Contains(zone))
+            OverlappedZones.Remove(zone);
+        FindPrioityZone();
+    }    
+
+    void FindPrioityZone()
+    {
+        if (OverlappedZones.Count == 0)
+        {
+            PriorityZone = null;
+            return;
+        }
+        Zone mostInfluence = OverlappedZones[OverlappedZones.Count - 1];
+        foreach (var zone in OverlappedZones)
+        {
+            if (zone.Influence > mostInfluence.Influence)
+                mostInfluence = zone;
+        }
+        PriorityZone = mostInfluence;
+        foreach (var ability in Abilities)
+        {
+            if (ability.ZoneRestriction == PriorityZone._ZoneType)
+            {
+                if(ActiveAbility != null)
+                    ActiveAbility.enabled = false;
+                ability.enabled = true;
+                ActiveAbility = ability;                      
+                return;
+            }
+        }
+        if (ActiveAbility == null || PriorityZone == null)
+            return;
+        if (PriorityZone._ZoneType != ActiveAbility.ZoneRestriction)
+        {
+            ActiveAbility.enabled = false;
+            ActiveAbility = null;
+        }
+    }
+}

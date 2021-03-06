@@ -51,3 +51,21 @@ TagManager:
   - name: Front
     uniqueID: 3405993979
     locked: 0
+  - name: Player
+    uniqueID: 2916815729
+    locked: 0
+  - name: Clear
+    uniqueID: 539477883
+    locked: 0
+  - name: Blue
+    uniqueID: 1481855671
+    locked: 0
+  - name: Red
+    uniqueID: 496985769
+    locked: 0
+  - name: Green
+    uniqueID: 1082083711
+    locked: 0
+  - name: Yello
+    uniqueID: 2998932043
+    locked: 0
