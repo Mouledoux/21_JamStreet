@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hashCode: -2113993494
   material: {fileID: 21069318434546836}
-  materialHashCode: 1205767201
+  materialHashCode: -630713078
   m_Version: 1.1.0
   m_SourceFontFileGUID: 
   m_SourceFontFile_EditorRef: {fileID: 0}
   m_SourceFontFile: {fileID: 0}
   m_AtlasPopulationMode: 0
   m_FaceInfo:
+    m_FaceIndex: 0
     m_FamilyName: Rajdhani
     m_StyleName: 
     m_PointSize: 163
@@ -28,7 +29,7 @@ MonoBehaviour:
     m_LineHeight: 208
     m_AscentLine: 151.5625
     m_CapLine: 104.8125
-    m_MeanLine: 0
+    m_MeanLine: 83.1875
     m_Baseline: 0
     m_DescentLine: -56.375
     m_SuperscriptOffset: 151.5625
@@ -1809,6 +1810,8 @@ MonoBehaviour:
   m_AtlasTextures:
   - {fileID: 28901167068722590}
   m_AtlasTextureIndex: 0
+  m_IsMultiAtlasTexturesEnabled: 0
+  m_ClearDynamicDataOnBuild: 0
   m_UsedGlyphRects: []
   m_FreeGlyphRects: []
   m_fontInfo:
@@ -2725,6 +2728,7 @@ MonoBehaviour:
     kerningPairs: []
   m_FontFeatureTable:
     m_GlyphPairAdjustmentRecords: []
+  fallbackFontAssets: []
   m_FallbackFontAssetTable: []
   m_CreationSettings:
     sourceFontFileName: 
@@ -2890,7 +2894,7 @@ Material:
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
-    - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+    - _UnderlayColor: {r: 0.2015563, g: 0.09758736, b: 0.036889452, a: 1}
 --- !u!28 &28901167068722590
 Texture2D:
   m_ObjectHideFlags: 0
@@ -2910,6 +2914,8 @@ Texture2D:
   m_TextureFormat: 1
   m_MipCount: 1
   m_IsReadable: 0
+  m_IgnoreMasterTextureLimit: 0
+  m_IsPreProcessed: 0
   m_StreamingMipmaps: 0
   m_StreamingMipmapsPriority: 0
   m_AlphaIsTransparency: 0
