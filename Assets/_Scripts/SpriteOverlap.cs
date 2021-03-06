@@ -3,23 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpriteOverlap : MonoBehaviour
-{    
-    public List<GameObject> Overlapped;
+{
+    [SerializeField]
+    public OverlapEvent OnObjectOverlap;
+    [SerializeField]
+    public OverlapEvent OnObjectLeaveOverlap;    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Overlapped.Add(other.gameObject);
+        OnObjectOverlap.Invoke(other.gameObject);
     }    
 
-    private void OnTriggerStay(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        if (Overlapped.Contains(other.gameObject))
-            return;        
-        Overlapped.Add(other.gameObject);
-    }
-
-    private void OnTriggerExit(Collider2D other)
-    {
-        if (Overlapped.Contains(other.gameObject))            
-            Overlapped.Remove(other.gameObject);
+        OnObjectLeaveOverlap.Invoke(other.gameObject);
     }
 }
+
+[System.Serializable]
+public class OverlapEvent : UnityEngine.Events.UnityEvent<GameObject> { }
