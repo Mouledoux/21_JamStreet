@@ -23,13 +23,23 @@ public class ZoneTraveler : MonoBehaviour
         if (OverlappedZones.Contains(zone))
             OverlappedZones.Remove(zone);
         FindPrioityZone();
-    }    
+    }
+
+    private void Update()
+    {
+        if (PriorityZone._CurrentType != ActiveAbility.ZoneRestriction)
+        {
+            ActiveAbility.enabled = false;
+            ActiveAbility = null;
+        }
+    }
 
     void FindPrioityZone()
     {
         if (OverlappedZones.Count == 0)
         {
             PriorityZone = null;
+            ActiveAbility = null;
             return;
         }
         Zone mostInfluence = OverlappedZones[OverlappedZones.Count - 1];
@@ -41,7 +51,7 @@ public class ZoneTraveler : MonoBehaviour
         PriorityZone = mostInfluence;
         foreach (var ability in Abilities)
         {
-            if (ability.ZoneRestriction == PriorityZone._ZoneType)
+            if (ability.ZoneRestriction == PriorityZone._CurrentType)
             {
                 if(ActiveAbility != null)
                     ActiveAbility.enabled = false;
@@ -51,8 +61,10 @@ public class ZoneTraveler : MonoBehaviour
             }
         }
         if (ActiveAbility == null || PriorityZone == null)
+        {
             return;
-        if (PriorityZone._ZoneType != ActiveAbility.ZoneRestriction)
+        }
+        if (PriorityZone._CurrentType != ActiveAbility.ZoneRestriction)
         {
             ActiveAbility.enabled = false;
             ActiveAbility = null;
