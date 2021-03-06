@@ -50,6 +50,8 @@ public class ZoneTraveler : MonoBehaviour
                 return;
             }
         }
+        if (ActiveAbility == null || PriorityZone == null)
+            return;
         if (PriorityZone._ZoneType != ActiveAbility.ZoneRestriction)
         {
             ActiveAbility.enabled = false;
