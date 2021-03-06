@@ -4,14 +4,31 @@ using UnityEngine;
 
 public class Zone : MonoBehaviour
 {
-    public int Influence;
-
+    public int Influence;    
     public enum ZoneType
     {
-        Red, Green, Blue, Yellow, Clear
+        Red, Green, Blue, Yellow, Clear, Default
     }
 
-    public ZoneType _ZoneType;
+    [SerializeField]
+    private ZoneType _ZoneType;
+    [HideInInspector]
+    public ZoneType _CurrentType;
+    public Color GlassColor;
+
+    private void Awake()
+    {
+        GetComponent<SpriteRenderer>().color = Color.clear;
+        GetComponent<SpriteMask>().enabled = false;
+    }
+
+    [ContextMenu("Unlock")]
+    public void OpenZone()
+    {
+        GetComponent<SpriteRenderer>().color = GlassColor;
+        GetComponent<SpriteMask>().enabled = true;
+        _CurrentType = _ZoneType;
+    }
 
     public void ObjectEnteredZone(GameObject obj)
     {
