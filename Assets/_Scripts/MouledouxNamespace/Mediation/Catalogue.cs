@@ -118,12 +118,13 @@ namespace Mouledoux.Mediation
                 {
                     try
                     {
-                        List<Action<T>> badSubs = subs[i].Callback.GetInvocationList().
+                        List<Action<T>> badSubs = new List<Action<T>>();
+                        badSubs = subs[i].Callback.GetInvocationList().
                             Where((Delegate del) => { return del.Target.Equals(null); }).
                             ToList() as List<Action<T>>;
                         
 
-                        while(badSubs.Count() > 0)
+                        while(badSubs != null && badSubs.Count() > 0)
                         {
                             subs[i].Callback -= badSubs[0];
                             badSubs.RemoveAt(0);
