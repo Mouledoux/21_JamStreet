@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class ZoneTraveler : MonoBehaviour
 {
     public List<ZoneBehaviour> OverlappedZones;

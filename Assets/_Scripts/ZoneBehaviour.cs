@@ -6,6 +6,13 @@ public class ZoneBehaviour : MonoBehaviour
 {
     public int Influence;
 
+    public enum ZoneType
+    {
+        Red, Green, Blue, Yellow, Clear
+    }
+
+    public ZoneType _ZoneType;
+
     public void ObjectEnteredZone(GameObject obj)
     {
         if (obj.GetComponent<ZoneTraveler>())
