@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZoneBehaviour : MonoBehaviour
+public class Zone : MonoBehaviour
 {
     public int Influence;
 
