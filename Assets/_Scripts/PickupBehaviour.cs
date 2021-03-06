@@ -19,7 +19,7 @@ public class PickupBehaviour : MonoBehaviour
     {
         if (obj.GetComponent<Pickupable>())
         {
-            obj.GetComponent<Pickupable>().DisplayPrompt(true);
+            obj.GetComponent<Pickupable>().DisplayPrompt(false);
         }
     }
 }
