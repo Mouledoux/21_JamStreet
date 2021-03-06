@@ -8,7 +8,7 @@ public class Zone : MonoBehaviour
 
     public enum ZoneType
     {
-        Red, Green, Blue, Yellow, Clear
+        Red, Green, Blue, Yellow, Clear, Default
     }
 
     public ZoneType _ZoneType;
