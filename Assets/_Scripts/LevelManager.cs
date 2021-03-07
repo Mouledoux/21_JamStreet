@@ -5,13 +5,29 @@ using Mouledoux.Mediation;
 
 public class LevelManager : Singleton<LevelManager>
 {
+    public GameObject opionMenu;
+
     public int levelIndex = 0;
+
     public List<GameObject> levelPrefabs = new List<GameObject>();
     private GameObject currentLevel;
 
     private void Start()
     {
+        foreach(GameObject l in levelPrefabs)
+        {
+            l.SetActive(false);
+        }
+
         SpawnLevel(0);
+        Catalogue<int>.Subscription RestartSub = new Catalogue<int>.Subscription(
+            "RestartLevel", (int i) => RestartLevel()).Subscribe();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            opionMenu.SetActive(!opionMenu.activeSelf);
     }
 
     public void SpawnLevel(int index)
