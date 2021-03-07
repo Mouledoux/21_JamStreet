@@ -8,7 +8,7 @@ namespace Gamekit2D
     {
         public void ExitPause()
         {
-            PlayerCharacter.PlayerInstance.Unpause();
+            //PlayerCharacter.PlayerInstance.Unpause();
         }
 
         public void RestartLevel()

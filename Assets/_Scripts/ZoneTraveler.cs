@@ -27,12 +27,19 @@ public class ZoneTraveler : MonoBehaviour
 
     private void Update()
     {
-        if(PriorityZone != null && ActiveAbility != null)
+        if (PriorityZone != null && ActiveAbility != null)
+        {
             if (PriorityZone._CurrentType != ActiveAbility.ZoneRestriction)
             {
                 ActiveAbility.enabled = false;
                 ActiveAbility = null;
             }
+        }
+        else if(ActiveAbility != null && PriorityZone == null)
+        {
+            ActiveAbility.enabled = false;
+            ActiveAbility = null;
+        }
     }
 
     void FindPrioityZone()
@@ -40,7 +47,11 @@ public class ZoneTraveler : MonoBehaviour
         if (OverlappedZones.Count == 0)
         {
             PriorityZone = null;
-            ActiveAbility = null;
+            if (ActiveAbility != null)
+            {
+                ActiveAbility.enabled = false;
+                ActiveAbility = null;
+            }
             GetComponent<SpriteRenderer>().sortingLayerName = "Default";
             return;
         }

@@ -179,24 +179,24 @@ namespace Gamekit2D
 
         void Update()
         {
-            if (PlayerInput.Instance.Pause.Down)
-            {
-                if (!m_InPause)
-                {
-                    if (ScreenFader.IsFading)
-                        return;
+            //if (PlayerInput.Instance.Pause.Down)
+            //{
+            //    if (!m_InPause)
+            //    {
+            //        if (ScreenFader.IsFading)
+            //            return;
 
-                    PlayerInput.Instance.ReleaseControl(false);
-                    PlayerInput.Instance.Pause.GainControl();
-                    m_InPause = true;
-                    Time.timeScale = 0;
-                    UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("UIMenus", UnityEngine.SceneManagement.LoadSceneMode.Additive);
-                }
-                else
-                {
-                    Unpause();
-                }
-            }
+            //        PlayerInput.Instance.ReleaseControl(false);
+            //        PlayerInput.Instance.Pause.GainControl();
+            //        m_InPause = true;
+            //        Time.timeScale = 0;
+            //        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("UIMenus", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+            //    }
+            //    else
+            //    {
+            //        Unpause();
+            //    }
+            //}
         }
 
         void FixedUpdate()
