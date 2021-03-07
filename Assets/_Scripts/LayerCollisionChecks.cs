@@ -4,9 +4,7 @@ using UnityEngine;
 using Mouledoux.Mediation;
 
 public class LayerCollisionChecks : MonoBehaviour
-{
-    public string LayerName;
-
+{    
     public List<ZoneTraveler> WhiteList;
 
     public Catalogue<ZoneTraveler>.Subscription ZoneChange;

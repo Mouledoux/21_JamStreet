@@ -11,13 +11,16 @@ public class Zone : MonoBehaviour
     }
 
     [SerializeField]
-    private ZoneType _ZoneType;
+    public ZoneType _ZoneType;
     [HideInInspector]
     public ZoneType _CurrentType;
+    [HideInInspector]
+    public bool IsUnlocked;
     public Color GlassColor;    
 
     private void Awake()
     {
+        IsUnlocked = false;
         GetComponent<SpriteRenderer>().color = Color.clear;
         GetComponent<SpriteMask>().enabled = false;
     }
@@ -25,6 +28,7 @@ public class Zone : MonoBehaviour
     [ContextMenu("Unlock")]
     public void OpenZone()
     {
+        IsUnlocked = true;
         GetComponent<SpriteRenderer>().color = GlassColor;
         GetComponent<SpriteMask>().enabled = true;
         _CurrentType = _ZoneType;
