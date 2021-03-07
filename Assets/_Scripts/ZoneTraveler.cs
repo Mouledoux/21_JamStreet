@@ -50,9 +50,11 @@ public class ZoneTraveler : MonoBehaviour
             if (zone.Influence > mostInfluence.Influence)
                 mostInfluence = zone;
         }
-        PriorityZone = mostInfluence;
-        Debug.Log("SHOUT");
-        Catalogue<ZoneTraveler>.NotifySubscribers("MyZoneChanged", this as ZoneTraveler);
+        if (mostInfluence != PriorityZone)
+        {            
+            PriorityZone = mostInfluence;
+            Catalogue<ZoneTraveler>.NotifySubscribers("MyZoneChanged", this as ZoneTraveler);
+        }
         foreach (var ability in Abilities)
         {
             if (ability.ZoneRestriction == PriorityZone._CurrentType)
