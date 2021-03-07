@@ -27,7 +27,7 @@ public class ZoneTraveler : MonoBehaviour
 
     private void Update()
     {
-        if(PriorityZone != null || ActiveAbility != null)
+        if(PriorityZone != null && ActiveAbility != null)
             if (PriorityZone._CurrentType != ActiveAbility.ZoneRestriction)
             {
                 ActiveAbility.enabled = false;
