@@ -9,6 +9,10 @@ public class LevelManager : Singleton<LevelManager>
     public List<GameObject> levelPrefabs = new List<GameObject>();
     private GameObject currentLevel;
 
+    private void Start()
+    {
+        SpawnLevel(0);
+    }
 
     public void SpawnLevel(int index)
     {
