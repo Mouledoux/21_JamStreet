@@ -18,9 +18,8 @@ public class LayerCollisionChecks : MonoBehaviour
     }
 
     void UpdateWhiteList(ZoneTraveler arg)
-    {
-        Debug.Log("UPDATE");
-        if (arg.PriorityZone == GetComponent<ZoneTraveler>().PriorityZone)
+    {        
+        if (arg.PriorityZone == GetComponent<ZoneTraveler>().PriorityZone && !WhiteList.Contains(arg) && arg != this.GetComponent<ZoneTraveler>())
         {
             WhiteList.Add(arg);
             Physics2D.IgnoreCollision(arg.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false);
@@ -32,8 +31,7 @@ public class LayerCollisionChecks : MonoBehaviour
             {
                 Physics2D.IgnoreCollision(WhiteList[i].GetComponent<Collider2D>(), GetComponent<Collider2D>(), true);
                 WhiteList.Remove(WhiteList[i]);
-            }            
-
+            }
         }
     }
 
